@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JoesTable - Login/Sign Up</title>
+<link rel="stylesheet" href="favorites.css">
+</head>
+<body>
+	<div class="container">
+	    <header>
+	        <h1>JoesTable!</h1>
+	        <nav>
+	            <ul>
+	                <li><a href="home.html">Home</a></li>
+	                <li><a href="favorites.html">Favorites</a></li>
+	                <li><a href="reservations.html">Reservations</a></li>
+	                <li><a href="http://localhost:8080/JoesTable/logoutServlet">Logout</a></li>
+	            </ul>
+	        </nav>
+	    </header>
+		
+	    <main>
+	        <section class="search-section">
+            <form class="search-form">
+			    <div class="form-group">
+			        <input type="text" id="restaurant-name" name="restaurant-name" placeholder="Restaurant Name" required>
+			        <button type="submit" class="search-button">Search</button>
+			        <div class="sorting-options">
+			            <input type="radio" id="best-match" name="sort" value="best-match">
+			            <label for="best-match">Best Match</label>
+			
+			            <input type="radio" id="review-count" name="sort" value="review-count">
+			            <label for="review-count">Review Count</label>
+			
+			            <input type="radio" id="rating" name="sort" value="rating">
+			            <label for="rating">Rating</label>
+			
+			            <input type="radio" id="distance" name="sort" value="distance">
+			            <label for="distance">Distance</label>
+			        </div>
+			    </div>
+			    <div class="latlong-group">
+			        <input type="number" id="latitude" name="latitude" placeholder="Latitude" step="0.000000000000001" min="-90" max="90" required>
+    				<input type="number" id="longitude" name="longitude" placeholder="Longitude" step="0.000000000000001" min="-180" max="180" required>	
+			        <button id="google-maps-button" type="button">Google Maps (Drop a pin!)</button>
+					<!-- The Modal -->
+					<div id="myModal" class="modal">
+					  <!-- Modal content -->
+					  <div class="modal-content">
+					    <span class="close">&times;</span>
+					    <div id="map" style="height: 400px; width: 100%;"></div>
+					  </div>
+					
+					</div>
+			    	
+			    </div>
+			</form>
+			<select id="sortOptions">
+			    <option value="name-asc">A to Z</option>
+			    <option value="name-desc">Z to A</option>
+			    <option value="rating-desc">Highest Rating</option>
+			    <option value="rating-asc">Lowest Rating</option>
+			    <option value="recent-desc">Most Recent</option>
+			    <option value="recent-asc">Least Recent</option>
+			</select>
+			<div id="results-container">
+			</div>
+        </section>
+	    </main>
+		<script src="favorites.js"></script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5qa8tmirelpsUTNXeo-Ye3NMRe56TVPE&callback=initMap"></script>
+	</div>
+</body>
+</html>

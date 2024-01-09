@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between; /* This will space out your header and nav */
+    align-items: center; /* This will vertically center the items in the header */
+    padding: 10px; /* Add some padding for visual spacing */
+}
+
+header h1 {
+	font-family: 'Lobster', cursive;
+    color: red;
+    text-align: left;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0; /* Remove default padding */
+    display: flex;
+    text-align: right;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: grey;
+}
+/* Main layout styles */
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+main {
+    padding: 20px;
+    text-align: left;
+}
+
+.banner-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Search section styles */
+.search-section {
+    margin-top: 20px;
+}
+
+.search-form {
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.search-form .form-group,
+.search-form .latlong-group {
+    flex-basis: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.search-form .form-group {
+    flex-wrap: wrap;
+}
+
+.search-form input[type="text"],
+.search-form .search-button,
+.search-form .google-maps-button {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex-basis: auto;
+}
+
+/* Adjust input width for latitude and longitude to take up half the space */
+.search-form .latlong-group input[type="number"] {
+    flex-basis: calc(50% - 10px);
+    border: 1px solid #ccc;
+    margin-right: 10px; /* Space between the latitude and longitude inputs */
+}
+
+.search-form .latlong-group .google-maps-button {
+    flex-basis: calc(50% - 10px);
+}
+
+.search-form .search-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.search-form .search-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Sorting options styles */
+.sorting-options {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.sorting-options input[type="radio"] {
+    margin-right: 5px;
+}
+
+.sorting-options label {
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+/* Google Maps button styles */
+#google-maps-button {
+    background-color: royalblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#google-maps-button:hover {
+    background-color: darkblue;
+}
+
+@media (min-width: 768px) {
+    /* For larger screens, we allow the restaurant name and search button to be inline */
+    .search-form .form-group {
+        flex-wrap: nowrap;
+    }
+
+    .search-form input[type="text"] {
+        flex-grow: 1;
+        margin-right: 10px;
+    }
+
+    .search-form .search-button,
+    .search-form .google-maps-button {
+        flex-grow: 0;
+    }
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black with opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%; /* Could be more or less, depending on screen size */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.business-result {
+    display: flex;
+    align-items: left;
+    margin-bottom: 20px; /* Adjust the margin as needed */
+    max-width: 600px; /* Adjust the width as needed */
+}
+
+.business-image img {
+    width: 200px; /* Fixed width for all images */
+    height: 200px; /* Fixed height for all images */
+    object-fit: cover; /* Ensures the image covers the area, may crop */
+    border-radius: 4px; /* Optional, for rounded corners */
+    margin-right: 20px; /* Space between image and text */
+}
+
+.business-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.business-info h2,
+.business-info p,
+.business-info a {
+    font-size: 1em; /* Adjust the text size as needed */
+    margin: 0;
+    padding: 5%;
+}
+
+.business-info a {
+    color: #0073bb; /* Yelp's brand color, adjust as needed */
+    text-decoration: none;
+    word-break: break-all; /* Ensures the URL does not overflow */
+}
+
+.business-info a:hover {
+    text-decoration: underline;
+}
+
+/* Optional: If you want to truncate the address to prevent very long text */
+.business-address {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 250px; /* Adjust as needed */
+}
+.full-info {
+    display: flex;
+    align-items: flex-start; /* Align to the top if the text is longer than the image height */
+    margin-bottom: 20px; /* Space between each full info box */
+    max-width: 600px; /* Maximum width of the container */
+    background: #fff; /* Assuming a white background */
+    padding: 20px; /* Padding inside the full info box */
+}
+
+.full-info .business-image img {
+    width: 200px; /* Fixed width for images */
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Ensures the image covers the area, may crop */
+    border-radius: 4px; /* Optional: for rounded corners */
+}
+
+.full-info .business-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px; /* Space between image and info */
+}
+
+.full-info .business-info h2 {
+    font-size: 1.5em; /* Larger font size for the business name */
+    margin: 0 0 10px 0; /* Margin below the business name */
+}
+
+.full-info .business-info p,
+.full-info .business-info a {
+    font-size: 1em; /* Regular font size for the rest of the information */
+    margin: 3px 0; /* Margin between each piece of information */
+}
+
+.full-info .business-info a {
+    color: #0073bb; /* Yelp's brand color, adjust as needed */
+    text-decoration: none;
+}
+
+.full-info .business-info a:hover {
+    text-decoration: underline;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Individual button styles */
+#button1, #button2 {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px auto;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
+
+#button1 {
+    background-color: #FFD700; /* Gold color */
+}
+
+#button2 {
+    background-color: #FF4500; /* Red color */
+}
+#reservationForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#reservationForm > div#DT {
+  display: flex;
+  justify-content: space-between;
+}
+
+#reservationForm > div#DT > input {
+  flex: 1; /* Each input will take up equal space in the DT div */
+  margin-right: 10px; /* Add some spacing between the inputs */
+}
+
+#reservationForm > div#DT > input:last-child {
+  margin-right: 0; /* No margin on the right for the last input */
+}
+
+#reservationForm textarea,
+#reservationForm button {
+  width: 100%; /* Stretch to fill the row */
+  margin-top: 10px; /* Add some spacing between the rows */
+}
+
+/* Adjust the height of the textarea if needed */
+#reservationForm textarea {
+  height: 50px;
+}
+
+/* Style for the submit button */
+#reservationForm button {
+  padding: 10px;
+  background-color: #FF4500; /* Example button color */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
